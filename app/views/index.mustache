@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<h1>Lista de Tareas</h1>
+
+<form id="formAgregar">
+    <input type="text" id="titulo" placeholder="Título" required>
+    <input type="text" id="descripcion" placeholder="Descripción" required>
+    <button type="submit">Agregar</button>
+</form>
+
+
+<div class="contenedor-tareas">
+    <!-- Tareas Pendientes -->
+    <div class="tareas-pendientes">
+        <h2>Pendientes</h2>
+        <ul>
+            {{#tareas}}
+                {{^completada}}
+                    <li>
+                        <strong>{{titulo}}</strong>: {{descripcion}}
+                        <a href="#" class="completar-btn" data-id="{{id}}">
+                            <button>Completada</button>
+                        </a>
+                        <a href="#" class="eliminar-btn" data-id="{{id}}">
+                            <button>Eliminar</button>
+                        </a>
+
+                    </li>
+                {{/completada}}
+            {{/tareas}}
+        </ul>
+    </div>
+
+    <!-- Tareas Completadas -->
+    <div class="tareas-completadas">
+        <h2>Completadas</h2>
+        <ul>
+            {{#tareas}}
+                {{#completada}}
+                    <li>
+                        <strong>{{titulo}}</strong>: {{descripcion}}
+                        <a href="#" class="eliminar-btn" data-id="{{id}}">
+                            <button>Eliminar</button>
+                        </a>
+
+                    </li>
+                {{/completada}}
+            {{/tareas}}
+        </ul>
+    </div>
+</div>
+
+<script src="js/scripts.js"></script>
+</body>
+</html>
